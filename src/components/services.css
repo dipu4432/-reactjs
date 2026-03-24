@@ -1,0 +1,87 @@
+.services-section {
+  background: linear-gradient(to right, #e9ecef, #dee2e6);
+  padding: 70px 0;
+}
+
+.services-title {
+  font-size: 2rem;
+}
+
+/* Card */
+.service-card {
+  background: #fff;
+  border-radius: 16px;
+  padding: 30px 20px;
+  text-align: center;
+  min-height: 230px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+}
+
+/* Hover effect */
+.service-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12);
+}
+
+/* Icon */
+.icon-circle {
+  width: 70px;
+  height: 70px;
+  margin-bottom: 15px;
+
+  border-radius: 50%;
+  background: #e6f0f7;
+  color: #4c8fb5;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Text */
+.service-card h5 {
+  margin-bottom: 8px;
+  font-size: 1.05rem;
+}
+
+.service-card p {
+  font-size: 14px;
+  margin: 0;
+}
+
+/* 🔥 5 cards layout */
+.custom-col {
+  flex: 0 0 20%;
+  max-width: 20%;
+}
+
+/* Tablet */
+@media (max-width: 992px) {
+  .custom-col {
+    flex: 0 0 33.33%;
+    max-width: 33.33%;
+  }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .custom-col {
+    flex: 0 0 50%;
+    max-width: 50%;
+  }
+}
+
+/* Small mobile */
+@media (max-width: 576px) {
+  .custom-col {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+}
