@@ -12,11 +12,12 @@ const Home = () => {
         <Banner />
         <Features />
         <About />
-        <Contact />
+        <div style={{ backgroundColor: "#eef2f6", padding: "40px 0" }}></div>
+        <Services />
         <div style={{ backgroundColor: "#eef2f6", padding: "40px 0" }}></div>
         <Gallery />
         <div style={{ backgroundColor: "#eef2f6", padding: "40px 0" }}></div>
-        <Services />
+        <Contact />
         <Testimonials />
     </div>
   )
