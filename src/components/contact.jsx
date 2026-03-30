@@ -53,7 +53,7 @@ function Contact() {
               backgroundColor: "#2FB36D",
             }}
             onClick={() => {
-              const phoneNumber = "+917070254985"; // replace with your number
+              const phoneNumber = "+919087654321"; // replace with your number
 
               window.location.href = `tel:${phoneNumber}`;
             }}
@@ -78,7 +78,7 @@ function Contact() {
               backgroundColor: "#3B82A0",
             }}
             onClick={() => {
-              const phoneNumber = "917070254985"; // replace with your number
+              const phoneNumber = "919087654321"; // replace with your number
 
               const message = encodeURIComponent(
                 "Hello Doctor, I want to book an appointment.",
