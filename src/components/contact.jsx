@@ -1,8 +1,12 @@
 import { FaPhoneAlt, FaWhatsapp, FaCalendarAlt } from "react-icons/fa";
 import Container from "react-bootstrap/Container";
-import Button from "react-bootstrap/Button";
+// import Button from "react-bootstrap/Button";
+import { useState } from "react";
+import { Modal, Button } from "react-bootstrap";
+import AppointmentForm from "./appointmentForm";
 
 function Contact() {
+  const [show, setShow] = useState(false);
 
   // Reusable button style
   const buttonStyle = {
@@ -28,17 +32,13 @@ function Contact() {
       }}
     >
       <Container>
-
         {/* Heading */}
-        <h1 className="fw-bold mb-5">
-          Book Your Appointment Today
-        </h1>
+        <h1 className="fw-bold mb-5">Book Your Appointment Today</h1>
 
         {/* Buttons */}
         <div className="d-flex justify-content-center gap-4 flex-wrap">
-
           {/* Call Now */}
-          <Button
+          {/* <Button
             style={{
               ...buttonStyle,
               backgroundColor: "#2FB36D",
@@ -46,13 +46,52 @@ function Contact() {
           >
             <FaPhoneAlt size={16} />
             Call Now
+          </Button> */}
+          <Button
+            style={{
+              ...buttonStyle,
+              backgroundColor: "#2FB36D",
+            }}
+            onClick={() => {
+              const phoneNumber = "+917070254985"; // replace with your number
+
+              window.location.href = `tel:${phoneNumber}`;
+            }}
+          >
+            <FaPhoneAlt size={16} />
+            Call Now
           </Button>
 
           {/* WhatsApp */}
+          {/* <Button
+            style={{
+              ...buttonStyle,
+              backgroundColor: "#3B82A0",
+            }}
+          >
+            <FaWhatsapp size={18} />
+            Whatsapp
+          </Button> */}
           <Button
             style={{
               ...buttonStyle,
               backgroundColor: "#3B82A0",
+            }}
+            onClick={() => {
+              const phoneNumber = "917070254985"; // replace with your number
+
+              const message = encodeURIComponent(
+                "Hello Doctor, I want to book an appointment.",
+              );
+
+              const url = `https://wa.me/${phoneNumber}?text=${message}`;
+
+              // ✅ Mobile + Desktop support
+              if (/Android|iPhone|iPad|iPod/i.test(navigator.userAgent)) {
+                window.open(url, "_self"); // mobile opens app directly
+              } else {
+                window.open(url, "_blank"); // desktop opens web WhatsApp
+              }
             }}
           >
             <FaWhatsapp size={18} />
@@ -66,13 +105,22 @@ function Contact() {
               backgroundColor: "#F4B350",
               color: "#000",
             }}
+            onClick={() => setShow(true)}
           >
             <FaCalendarAlt size={16} />
             Book Appointment
           </Button>
-
         </div>
+        {/* ✅ Modal OUTSIDE Navbar */}
+        <Modal show={show} onHide={() => setShow(false)} centered size="lg">
+          <Modal.Header closeButton>
+            <Modal.Title>Book Appointment</Modal.Title>
+          </Modal.Header>
 
+          <Modal.Body>
+            <AppointmentForm onSuccess={() => setShow(false)} />
+          </Modal.Body>
+        </Modal>
       </Container>
     </div>
   );

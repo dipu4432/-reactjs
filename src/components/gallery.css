@@ -16,10 +16,35 @@
 
 /* Card */
 .gallery-card {
-  width: 23%;
   border-radius: 14px;
   overflow: hidden;
   box-shadow: 0 6px 18px rgba(0,0,0,0.1);
+}
+
+/* Desktop (4 items) */
+.gallery-card {
+  flex: 0 0 calc(25% - 15px);
+}
+
+/* Tablet (3 items) */
+@media (max-width: 991px) {
+  .gallery-card {
+    flex: 0 0 calc(33.33% - 14px);
+  }
+}
+
+/* Small tablet (2 items) */
+@media (max-width: 767px) {
+  .gallery-card {
+    flex: 0 0 calc(50% - 10px);
+  }
+}
+
+/* Mobile (1 item) */
+@media (max-width: 575px) {
+  .gallery-card {
+    flex: 0 0 100%;
+  }
 }
 
 .gallery-card img {
@@ -39,12 +64,25 @@
   padding: 10px;
   border-radius: 50%;
   cursor: pointer;
+  z-index: 10;
 }
 
+/* Mobile fix */
 .nav-btn.left {
-  left: -20px;
+  left: 5px;
 }
 
 .nav-btn.right {
-  right: -20px;
+  right: 5px;
+}
+
+/* Desktop spacing */
+@media (min-width: 992px) {
+  .nav-btn.left {
+    left: -20px;
+  }
+
+  .nav-btn.right {
+    right: -20px;
+  }
 }

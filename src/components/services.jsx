@@ -45,7 +45,7 @@ function Services() {
         {/* Cards */}
         <Row className="g-4 justify-content-center">
           {services.map((item, index) => (
-            <Col key={index} className="custom-col">
+            <Col key={index} xs={12} sm={6} md={4} lg={3} xl={2}>
               <div className="service-card">
                 
                 {/* Icon */}

@@ -1,8 +1,13 @@
 import { FaPhoneAlt, FaCalendarAlt } from "react-icons/fa";
 import "./banner.css";
 import heroBg from "../assets/hero-bg.jpg";
+import { useState } from "react";
+import { Modal, Button } from "react-bootstrap";
+import AppointmentForm from "./appointmentForm";
 
 function Banner() {
+  const [show, setShow] = useState(false);
+
   return (
     <section
       className="hero-section"
@@ -27,14 +32,33 @@ function Banner() {
 
         {/* Buttons */}
         <div className="hero-buttons">
-          <button className="btn-primary">
+          <button className="btn-primary" onClick={() => setShow(true)}>
             <FaCalendarAlt /> Book Appointment
           </button>
 
-          <button className="btn-secondary">
+          {/* <button className="btn-secondary">
             <FaPhoneAlt /> Call Doctor
-          </button>
+          </button> */}
+          <Button
+            className="btn-secondary"
+            onClick={() => {
+              const phoneNumber = "+919876543210"; // replace with your number
+              window.location.href = `tel:${phoneNumber}`;
+            }}
+          >
+            <FaPhoneAlt /> Call Doctor
+          </Button>
         </div>
+        {/* ✅ Modal OUTSIDE Navbar */}
+        <Modal show={show} onHide={() => setShow(false)} centered size="lg">
+          <Modal.Header closeButton>
+            <Modal.Title>Book Appointment</Modal.Title>
+          </Modal.Header>
+
+          <Modal.Body>
+            <AppointmentForm onSuccess={() => setShow(false)} />
+          </Modal.Body>
+        </Modal>
       </div>
     </section>
   );
