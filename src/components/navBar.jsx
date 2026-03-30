@@ -10,7 +10,8 @@ function NavBar() {
 
   return (
     <>
-      <Navbar bg="light" expand="lg" className="py-3 shadow-sm">
+      {/* <Navbar bg="light" expand="lg" className="py-3 shadow-sm" fixed="top"> */}
+      <Navbar bg="light" expand="lg" className="py-3 shadow-sm" >
         <Container>
           
           {/* Logo */}
@@ -23,12 +24,12 @@ function NavBar() {
 
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="mx-auto gap-4">
-              <Nav.Link href="#">Home</Nav.Link>
-              <Nav.Link href="#">About</Nav.Link>
-              <Nav.Link href="#">Services</Nav.Link>
-              <Nav.Link href="#">Gallery</Nav.Link>
-              <Nav.Link href="#">Reviews</Nav.Link>
-              <Nav.Link href="#">Contact</Nav.Link>
+              <Nav.Link href="#home">Home</Nav.Link>
+              <Nav.Link href="#about">About</Nav.Link>
+              <Nav.Link href="#services">Services</Nav.Link>
+              <Nav.Link href="#gallery">Gallery</Nav.Link>
+              <Nav.Link href="#reviews">Reviews</Nav.Link>
+              <Nav.Link href="#contact">Contact</Nav.Link>
             </Nav>
 
             {/* Button */}
