@@ -1,10 +1,19 @@
 .services-section {
-  background: linear-gradient(to right, #e9ecef, #dee2e6);
-  padding: 50px 0;
+  background: linear-gradient(to bottom,#ECF2FE 0%,
+  #FFFFFF 40%,
+  #FFFFFF 60%,
+  #ECF2FE 100%);
+  padding: 70px 0;
 }
 
 .services-title {
   font-size: 2rem;
+}
+
+.service-img {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
 }
 
 /* Card */

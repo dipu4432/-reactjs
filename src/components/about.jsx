@@ -3,7 +3,7 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import { FaCheck } from "react-icons/fa";
 import "./about.css";
-import Doctor from "../assets/doctor.jpg";
+import Doctor from "../assets/doctor.webp";
 import { IoIosArrowForward } from "react-icons/io";
 
 function About() {

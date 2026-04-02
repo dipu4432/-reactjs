@@ -3,21 +3,21 @@ import Container from "react-bootstrap/Container";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import "./gallery.css";
 
-import g1 from "../assets/gallery1.jpg";
-import g2 from "../assets/gallery2.jpg";
-import g3 from "../assets/gallery3.jpg";
-import g4 from "../assets/gallery4.jpg";
-import c1 from "../assets/car.jpg";
-import c2 from "../assets/car2.jpg";
-import c3 from "../assets/car3.jpg";
+import g1 from "../assets/gallery/gallery1.webp";
+import g2 from "../assets/gallery/gallery2.webp";
+import g3 from "../assets/gallery/gallery3.webp";
+import c1 from "../assets/gallery/img1.webp";
+import c2 from "../assets/gallery/img2.webp";
+import c3 from "../assets/gallery/img3.webp";
+import c4 from "../assets/gallery/img4.webp";
 
 function Gallery() {
-  const images = [g1, g2, g3, g4, c1, c2, c3];
+  const images = [g1, g2, g3, c1, c2, c3, c4];
 
   const [startIndex, setStartIndex] = useState(0);
   const [visibleCount, setVisibleCount] = useState(4);
 
-  // ✅ Responsive visible count
+  //  Responsive visible count
   useEffect(() => {
     const updateCount = () => {
       if (window.innerWidth < 576) {

@@ -1,34 +1,37 @@
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import { FaBone, FaHandHoldingMedical, FaDumbbell } from "react-icons/fa";
-import { GiKneeCap } from "react-icons/gi";
 import "./services.css";
+import fractureImg from "../assets/services/fracture-treatment.webp";
+import jointImg from "../assets/services/joint-pain.webp";
+import arthritisImg from "../assets/services/arthritis-treatment.webp";
+import physioImg from "../assets/services/physiotherapy.webp";
+import kneeImg from "../assets/services/knee-pain.webp";
 
 function Services() {
   const services = [
     {
-      icon: <FaBone size={28} />,
+      image: fractureImg,
       title: "Fracture Treatment",
       desc: "Bones & Joint Fracture Care",
     },
     {
-      icon: <FaBone size={28} />,
+      image: jointImg,
       title: "Joint Pain Treatment",
       desc: "Relief from Joint Pain",
     },
     {
-      icon: <FaHandHoldingMedical size={28} />,
+      image: arthritisImg,
       title: "Arthritis Treatment",
       desc: "Arthritis & Joint Inflammation Care",
     },
     {
-      icon: <FaDumbbell size={28} />,
+      image: physioImg,
       title: "Physiotherapy",
       desc: "Rehabilitation & Physical Therapy",
     },
     {
-      icon: <GiKneeCap size={28} />,
+      image: kneeImg,
       title: "Knee Pain Treatment",
       desc: "Advanced Knee Pain Care",
     },
@@ -50,7 +53,7 @@ function Services() {
                 
                 {/* Icon */}
                 <div className="icon-circle">
-                  {item.icon}
+                  <img src={item.image} alt={item.title} className="service-img" />
                 </div>
 
                 {/* Title */}

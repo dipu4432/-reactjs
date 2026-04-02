@@ -1,0 +1,20 @@
+/* Mobile navbar spacing fix */
+@media (max-width: 991px) {
+  .nav-mobile {
+    gap: 10px !important; /* reduce spacing */
+  }
+
+  .nav-mobile .nav-link {
+    padding: 8px 0 !important; /* reduce vertical space */
+    font-size: 15px;
+  }
+
+  .navbar-collapse {
+    padding-top: 10px;
+  }
+
+  .navbar .btn {
+    margin-top: 10px;
+    width: 100%; /* full width button looks better */
+  }
+}

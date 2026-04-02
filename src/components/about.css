@@ -1,5 +1,8 @@
 .about-section {
-  background: linear-gradient(to right, #e9ecef, #dee2e6);
+  background: linear-gradient(to bottom,#ECF2FE 0%,
+  #FFFFFF 40%,
+  #FFFFFF 60%,
+  #ECF2FE 100%);
   padding: 70px 0;
 }
 

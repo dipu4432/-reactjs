@@ -26,7 +26,10 @@ function Contact() {
   return (
     <div
       style={{
-        background: "linear-gradient(to right, #e9ecef, #dee2e6)",
+        background: `linear-gradient(to bottom, #ECF2FE 0%,
+  #FFFFFF 40%,
+  #FFFFFF 60%,
+  #ECF2FE 100%)`,
         padding: "60px 0",
         textAlign: "center",
       }}

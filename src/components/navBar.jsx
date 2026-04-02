@@ -4,6 +4,7 @@ import Navbar from "react-bootstrap/Navbar";
 import { useState } from "react";
 import { Modal, Button } from "react-bootstrap";
 import AppointmentForm from "./appointmentForm";
+import "./navBar.css";
 
 function NavBar() {
   const [show, setShow] = useState(false);
@@ -23,7 +24,7 @@ function NavBar() {
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
 
           <Navbar.Collapse id="basic-navbar-nav">
-            <Nav className="mx-auto gap-4">
+            <Nav className="mx-auto nav-mobile">
               <Nav.Link href="#home">Home</Nav.Link>
               <Nav.Link href="#about">About</Nav.Link>
               <Nav.Link href="#services">Services</Nav.Link>

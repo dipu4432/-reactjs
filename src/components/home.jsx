@@ -12,11 +12,11 @@ const Home = () => {
         <div id="home"><Banner /></div>
         <div id="features"><Features /></div>
         <div id="about"><About /></div>
-        <div style={{ backgroundColor: "#eef2f6", padding: "40px 0" }}></div>
+        {/* <div style={{ backgroundColor: "#eef2f6", padding: "40px 0" }}></div> */}
         <div id="services"><Services /></div>
-        <div style={{ backgroundColor: "#eef2f6", padding: "40px 0" }}></div>
+        {/* <div style={{ backgroundColor: "#eef2f6", padding: "40px 0" }}></div> */}
         <div id="gallery"><Gallery /></div>
-        <div style={{ backgroundColor: "#eef2f6", padding: "40px 0" }}></div>
+        {/* <div style={{ backgroundColor: "#eef2f6", padding: "40px 0" }}></div> */}
         <div id="contact"><Contact /></div>
         <div id="reviews"><Testimonials /></div>
     </div>
