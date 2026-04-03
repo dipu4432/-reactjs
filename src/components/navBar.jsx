@@ -12,11 +12,11 @@ function NavBar() {
   return (
     <>
       {/* <Navbar bg="light" expand="lg" className="py-3 shadow-sm" fixed="top"> */}
-      <Navbar bg="light" expand="lg" className="py-3 shadow-sm" >
+      <Navbar bg="light" expand="lg" className="py-4 shadow-sm" >
         <Container>
           
           {/* Logo */}
-          <Navbar.Brand className="fw-bold fs-4">
+          <Navbar.Brand className="fw-bold fs-6">
             Tiwari Nursing Home
           </Navbar.Brand>
 

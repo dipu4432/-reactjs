@@ -1,11 +1,13 @@
 import { useState } from "react";
 import { Form, Button } from "react-bootstrap";
+import "./appointmentForm.css";
 
 function AppointmentForm({ onSuccess }) {
   const [formData, setFormData] = useState({
     name: "",
     phone: "",
     date: "",
+    time: "",
     reason: "",
     confirm: false,
   });
@@ -18,6 +20,16 @@ function AppointmentForm({ onSuccess }) {
     });
   };
 
+  // ✅ Date select
+  const handleDateSelect = (date) => {
+    setFormData({ ...formData, date });
+  };
+
+  // ✅ Time select
+  const handleTimeSelect = (time) => {
+    setFormData({ ...formData, time });
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -26,14 +38,22 @@ function AppointmentForm({ onSuccess }) {
       return;
     }
 
+    if (!formData.date || !formData.time) {
+      alert("Please select date and time.");
+      return;
+    }
+
     try {
       await fetch(
-        "https://script.google.com/macros/s/AKfycbyhHfGyuOPbxmNNKyT4Bi2vfc8GN2_0eIXmF7EKnaeXkfGB6_WG2Jd0gf5IUr_YStvmZg/exec",
+        "https://script.google.com/macros/s/AKfycbwKupyUxDkH1MFTb2HLwoxNNE_N5ugmNeU2ek1aFOIyHInURKuaZSNqVKSBIG3D3XgOVw/exec",
         {
           method: "POST",
           mode: "no-cors",
+          headers: {
+            "Content-Type": "application/json",
+          },
           body: JSON.stringify(formData),
-        }
+        },
       );
 
       alert("Appointment Submitted ✅");
@@ -42,12 +62,12 @@ function AppointmentForm({ onSuccess }) {
         name: "",
         phone: "",
         date: "",
+        time: "",
         reason: "",
         confirm: false,
       });
 
       if (onSuccess) onSuccess();
-
     } catch (error) {
       console.error("Error:", error);
       alert("Something went wrong!");
@@ -56,12 +76,9 @@ function AppointmentForm({ onSuccess }) {
 
   return (
     <>
-      <h5 className="text-center mb-3 fw-bold">
-        Book Appointment
-      </h5>
+      <h5 className="text-center mb-3 fw-bold">Book Appointment</h5>
 
       <Form onSubmit={handleSubmit}>
-        
         {/* Name */}
         <Form.Group className="mb-3">
           <Form.Control
@@ -97,6 +114,50 @@ function AppointmentForm({ onSuccess }) {
           />
         </Form.Group>
 
+        {/* ✅ Time Sections */}
+        <div className="mb-3">
+          <p className="fw-bold mb-2">Select Time</p>
+
+          <p className="mb-1">Morning</p>
+          <div className="time-boxes mb-2">
+            {["9:00 AM", "10:00 AM", "11:00 AM"].map((time) => (
+              <div
+                key={time}
+                className={`time-box ${formData.time === time ? "active" : ""}`}
+                onClick={() => handleTimeSelect(time)}
+              >
+                {time}
+              </div>
+            ))}
+          </div>
+
+          <p className="mb-1">Afternoon</p>
+          <div className="time-boxes mb-2">
+            {["1:00 PM", "2:00 PM", "3:00 PM"].map((time) => (
+              <div
+                key={time}
+                className={`time-box ${formData.time === time ? "active" : ""}`}
+                onClick={() => handleTimeSelect(time)}
+              >
+                {time}
+              </div>
+            ))}
+          </div>
+
+          <p className="mb-1">Evening</p>
+          <div className="time-boxes">
+            {["5:00 PM", "6:00 PM", "7:00 PM"].map((time) => (
+              <div
+                key={time}
+                className={`time-box ${formData.time === time ? "active" : ""}`}
+                onClick={() => handleTimeSelect(time)}
+              >
+                {time}
+              </div>
+            ))}
+          </div>
+        </div>
+
         {/* Reason */}
         <Form.Group className="mb-3">
           <Form.Select
@@ -109,7 +170,7 @@ function AppointmentForm({ onSuccess }) {
             <option>Knee Pain</option>
             <option>Back Pain</option>
             <option>Broken Leg</option>
-            <option>Fever</option>
+            <option>Broken Hand</option>
             <option>General Checkup</option>
           </Form.Select>
         </Form.Group>
@@ -131,7 +192,6 @@ function AppointmentForm({ onSuccess }) {
             Submit Appointment
           </Button>
         </div>
-
       </Form>
     </>
   );

@@ -1,3 +1,4 @@
+import { useState } from "react";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
@@ -7,6 +8,8 @@ import Doctor from "../assets/doctor.webp";
 import { IoIosArrowForward } from "react-icons/io";
 
 function About() {
+  const [showMore, setShowMore] = useState(false);
+
   return (
     <section className="about-section">
       <Container>
@@ -30,24 +33,35 @@ function About() {
 
             {/* Points */}
             <ul className="about-list">
-              <li>
-                <FaCheck className="icon" />
-                Experienced Orthopedic Doctor
-              </li>
-              <li>
-                <FaCheck className="icon" />
-                Bone & Joint Specialist
-              </li>
-              <li>
-                <FaCheck className="icon" />
-                Many successful treatments
-              </li>
-            </ul>
+  {[
+    "Experienced Orthopedic Doctor",
+    "Expert in Bone & Joint Treatment",
+    "Advanced Fracture Management",
+    "Arthritis & Joint Pain Specialist",
+    "Knee Pain & Injury Treatment",
+    "Personalized Patient Care",
+    "Modern Equipment & Techniques",
+    "Fast Recovery Focused Treatment",
+    "Friendly & Patient-Centered Approach",
+    "Trusted by Hundreds of Patients",
+  ]
+    .slice(0, showMore ? 10 : 5)
+    .map((item, index) => (
+      <li key={index}>
+        <FaCheck className="icon" />
+        {item}
+      </li>
+    ))}
+</ul>
 
             {/* Button */}
-            <button className="about-btn d-flex align-items-center gap-2">
-              Read More <IoIosArrowForward size={18} />
-            </button>
+            <button
+  className="about-btn d-flex align-items-center gap-2"
+  onClick={() => setShowMore(!showMore)}
+>
+  {showMore ? "Read Less" : "Read More"}
+  <IoIosArrowForward size={18} />
+</button>
           </Col>
         </Row>
       </Container>
