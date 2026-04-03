@@ -3,10 +3,10 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import "./services.css";
 import fractureImg from "../assets/services/fracture-treatment.webp";
-import jointImg from "../assets/services/joint-pain.webp";
+import jointImg from "../assets/services/joint.webp";
 import arthritisImg from "../assets/services/arthritis-treatment.webp";
-import physioImg from "../assets/services/physiotherapy.webp";
-import kneeImg from "../assets/services/knee-pain.webp";
+import physioImg from "../assets/services/Physiotherapy.webp";
+import kneeImg from "../assets/services/knee.webp";
 
 function Services() {
   const services = [
