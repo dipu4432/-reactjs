@@ -2,6 +2,10 @@ import NavBar from './components/navBar'
 import HOME from './components/home'
 import Footer from './components/footer'
 
+// ✅ Import toast container
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 function App() {
 
   return (
@@ -17,6 +21,9 @@ function App() {
 
       {/* Footer */}
       <Footer />
+
+      <ToastContainer position="top-right" autoClose={3000} />
+      
     </div>
   )
 }

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Form, Button } from "react-bootstrap";
 import "./appointmentForm.css";
+import { toast } from "react-toastify";
 
 function AppointmentForm({ onSuccess }) {
   const [formData, setFormData] = useState({
@@ -37,32 +38,33 @@ function AppointmentForm({ onSuccess }) {
   const validateForm = () => {
     // Name
     if (!formData.name.trim()) {
-      alert("Name is required");
+      toast.dismiss();
+      toast.warning("Name is required");
       return false;
     }
 
     // Phone (India: 10 digits)
     if (!/^[6-9]\d{9}$/.test(formData.phone)) {
-      alert("Enter valid 10-digit phone number");
+      toast.warning("Enter valid 10-digit phone number");
       return false;
     }
 
     // Date (not past)
     const today = new Date().toISOString().split("T")[0];
     if (!formData.date || formData.date < today) {
-      alert("Please select a valid date");
+      toast.warning("Please select a valid date");
       return false;
     }
 
     // Time
     if (!formData.time) {
-      alert("Please select time");
+      toast.warning("Please select time");
       return false;
     }
 
     // Reason
     if (!formData.reason) {
-      alert("Please select reason");
+      toast.warning("Please select reason");
       return false;
     }
 
@@ -86,6 +88,8 @@ function AppointmentForm({ onSuccess }) {
 
     setLoading(true); // ✅ start loading
 
+    const toastId = toast.loading("Submitting...");
+
     try {
       await fetch(SCRIPT_URL, {
         method: "POST",
@@ -96,7 +100,15 @@ function AppointmentForm({ onSuccess }) {
         body: JSON.stringify(formData),
       });
 
-      alert("Appointment Submitted ✅");
+      // toast.success("Appointment Submitted ✅");
+
+      // ✅ update same toast (no new popup)
+      toast.update(toastId, {
+        render: "Appointment Submitted ✅",
+        type: "success",
+        isLoading: false,
+        autoClose: 3000,
+      });
 
       setFormData({
         name: "",
@@ -110,7 +122,14 @@ function AppointmentForm({ onSuccess }) {
       if (onSuccess) onSuccess();
     } catch (error) {
       console.error("Error:", error);
-      alert("Something went wrong!");
+      // toast.error("Something went wrong!");
+      // ✅ update same toast for error
+      toast.update(toastId, {
+        render: "Something went wrong!",
+        type: "error",
+        isLoading: false,
+        autoClose: 3000,
+      });
     } finally {
       setLoading(false);
     }
