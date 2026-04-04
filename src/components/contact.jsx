@@ -8,6 +8,9 @@ import AppointmentForm from "./appointmentForm";
 function Contact() {
   const [show, setShow] = useState(false);
 
+  const phoneNumber = import.meta.env.VITE_PHONE_NUMBER;
+  const message = encodeURIComponent(import.meta.env.VITE_WHATSAPP_MESSAGE);
+
   // Reusable button style
   const buttonStyle = {
     width: "220px",
@@ -56,9 +59,10 @@ function Contact() {
               backgroundColor: "#2FB36D",
             }}
             onClick={() => {
-              const phoneNumber = "+919087654321"; // replace with your number
+              // const phoneNumber = import.meta.env.VITE_PHONE_NUMBER;
 
-              window.location.href = `tel:${phoneNumber}`;
+              window.location.href = `tel:+${phoneNumber}`;
+              // console.log(`tel:+${phoneNumber}`);
             }}
           >
             <FaPhoneAlt size={16} />
@@ -81,11 +85,11 @@ function Contact() {
               backgroundColor: "#3B82A0",
             }}
             onClick={() => {
-              const phoneNumber = "919087654321"; // replace with your number
+              // const phoneNumber = import.meta.env.VITE_PHONE_NUMBER;
 
-              const message = encodeURIComponent(
-                "Hello Doctor, I want to book an appointment.",
-              );
+              // const message = encodeURIComponent(
+              //   import.meta.env.VITE_WHATSAPP_MESSAGE
+              // );
 
               const url = `https://wa.me/${phoneNumber}?text=${message}`;
 

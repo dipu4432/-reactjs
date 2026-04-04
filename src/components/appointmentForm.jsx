@@ -12,6 +12,8 @@ function AppointmentForm({ onSuccess }) {
     confirm: false,
   });
 
+  const SCRIPT_URL = import.meta.env.VITE_GOOGLE_SCRIPT_URL;
+
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
     setFormData({
@@ -45,7 +47,7 @@ function AppointmentForm({ onSuccess }) {
 
     try {
       await fetch(
-        "https://script.google.com/macros/s/AKfycbwKupyUxDkH1MFTb2HLwoxNNE_N5ugmNeU2ek1aFOIyHInURKuaZSNqVKSBIG3D3XgOVw/exec",
+        SCRIPT_URL,
         {
           method: "POST",
           mode: "no-cors",

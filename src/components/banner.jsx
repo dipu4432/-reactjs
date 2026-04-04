@@ -8,6 +8,8 @@ import AppointmentForm from "./appointmentForm";
 function Banner() {
   const [show, setShow] = useState(false);
 
+  const phoneNumber = import.meta.env.VITE_PHONE_NUMBER;
+
   return (
     <section
       className="hero-section"
@@ -42,7 +44,7 @@ function Banner() {
           <Button
             className="btn-secondary"
             onClick={() => {
-              const phoneNumber = "+919876543210"; // replace with your number
+              // const phoneNumber = "+919876543210"; // replace with your number
               window.location.href = `tel:${phoneNumber}`;
             }}
           >
