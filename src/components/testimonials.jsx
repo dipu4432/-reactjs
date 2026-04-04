@@ -1,4 +1,5 @@
 import { FaStar } from "react-icons/fa";
+import user1 from "../assets/girl.webp";
 import user2 from "../assets/doctor.webp";
 
 function Testimonials() {
@@ -30,7 +31,7 @@ function Testimonials() {
             <div className="card p-4 shadow-sm rounded h-100">
               <div className="d-flex align-items-center mb-3 gap-3">
                 <img
-                  src="/assets/user1.jpg"
+                  src={user1}
                   className="rounded-circle"
                   width="50"
                   height="50"
