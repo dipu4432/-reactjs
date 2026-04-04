@@ -9,16 +9,18 @@ function AppointmentForm({ onSuccess }) {
     date: "",
     time: "",
     reason: "",
-    confirm: false,
+    // confirm: false,
   });
+  const [loading, setLoading] = useState(false);
 
   const SCRIPT_URL = import.meta.env.VITE_GOOGLE_SCRIPT_URL;
 
   const handleChange = (e) => {
-    const { name, value, type, checked } = e.target;
+    const { name, value } = e.target;
     setFormData({
       ...formData,
-      [name]: type === "checkbox" ? checked : value,
+      // [name]: type === "checkbox" ? checked : value,
+      [name]: value,
     });
   };
 
@@ -32,31 +34,67 @@ function AppointmentForm({ onSuccess }) {
     setFormData({ ...formData, time });
   };
 
+  const validateForm = () => {
+    // Name
+    if (!formData.name.trim()) {
+      alert("Name is required");
+      return false;
+    }
+
+    // Phone (India: 10 digits)
+    if (!/^[6-9]\d{9}$/.test(formData.phone)) {
+      alert("Enter valid 10-digit phone number");
+      return false;
+    }
+
+    // Date (not past)
+    const today = new Date().toISOString().split("T")[0];
+    if (!formData.date || formData.date < today) {
+      alert("Please select a valid date");
+      return false;
+    }
+
+    // Time
+    if (!formData.time) {
+      alert("Please select time");
+      return false;
+    }
+
+    // Reason
+    if (!formData.reason) {
+      alert("Please select reason");
+      return false;
+    }
+
+    return true;
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!formData.confirm) {
-      alert("Please confirm your details first.");
-      return;
-    }
+    // if (!formData.confirm) {
+    //   alert("Please confirm your details first.");
+    //   return;
+    // }
 
-    if (!formData.date || !formData.time) {
-      alert("Please select date and time.");
-      return;
-    }
+    // if (!formData.date || !formData.time) {
+    //   alert("Please select date and time.");
+    //   return;
+    // }
+
+    if (!validateForm()) return;
+
+    setLoading(true); // ✅ start loading
 
     try {
-      await fetch(
-        SCRIPT_URL,
-        {
-          method: "POST",
-          mode: "no-cors",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(formData),
+      await fetch(SCRIPT_URL, {
+        method: "POST",
+        mode: "no-cors",
+        headers: {
+          "Content-Type": "application/json",
         },
-      );
+        body: JSON.stringify(formData),
+      });
 
       alert("Appointment Submitted ✅");
 
@@ -66,19 +104,21 @@ function AppointmentForm({ onSuccess }) {
         date: "",
         time: "",
         reason: "",
-        confirm: false,
+        // confirm: false,
       });
 
       if (onSuccess) onSuccess();
     } catch (error) {
       console.error("Error:", error);
       alert("Something went wrong!");
+    } finally {
+      setLoading(false);
     }
   };
 
   return (
     <>
-      <h5 className="text-center mb-3 fw-bold">Book Appointment</h5>
+      {/* <h5 className="text-center mb-3 fw-bold">Book Appointment</h5> */}
 
       <Form onSubmit={handleSubmit}>
         {/* Name */}
@@ -111,6 +151,7 @@ function AppointmentForm({ onSuccess }) {
             type="date"
             name="date"
             value={formData.date}
+            placeholder="Select Date"
             onChange={handleChange}
             required
           />
@@ -178,7 +219,7 @@ function AppointmentForm({ onSuccess }) {
         </Form.Group>
 
         {/* Confirm */}
-        <Form.Group className="mb-3">
+        {/* <Form.Group className="mb-3">
           <Form.Check
             type="checkbox"
             name="confirm"
@@ -186,12 +227,13 @@ function AppointmentForm({ onSuccess }) {
             checked={formData.confirm}
             onChange={handleChange}
           />
-        </Form.Group>
+        </Form.Group> */}
 
         {/* Submit */}
         <div className="d-grid">
-          <Button variant="primary" type="submit">
-            Submit Appointment
+          <Button variant="primary" type="submit" disabled={loading}>
+            {/* Submit Appointment */}
+            {loading ? "Submitting..." : "Submit Appointment"}
           </Button>
         </div>
       </Form>
