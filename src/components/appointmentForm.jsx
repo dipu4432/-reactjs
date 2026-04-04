@@ -2,6 +2,9 @@ import { useState } from "react";
 import { Form, Button } from "react-bootstrap";
 import "./appointmentForm.css";
 import { toast } from "react-toastify";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+import { FaCalendarAlt } from "react-icons/fa";
 
 function AppointmentForm({ onSuccess }) {
   const [formData, setFormData] = useState({
@@ -166,14 +169,33 @@ function AppointmentForm({ onSuccess }) {
 
         {/* Date */}
         <Form.Group className="mb-3">
-          <Form.Control
-            type="date"
-            name="date"
-            value={formData.date}
-            placeholder="Select Date"
-            onChange={handleChange}
-            required
-          />
+          <div style={{ position: "relative" }}>
+            <DatePicker
+              selected={formData.date ? new Date(formData.date) : null}
+              onChange={(date) =>
+                setFormData({
+                  ...formData,
+                  date: date.toISOString().split("T")[0],
+                })
+              }
+              minDate={new Date()}
+              placeholderText="Select Date"
+              dateFormat="yyyy-MM-dd"
+              className="form-control"
+            />
+
+            <FaCalendarAlt
+              size={16}
+              style={{
+                position: "absolute",
+                right: "12px",
+                top: "50%",
+                transform: "translateY(-50%)",
+                pointerEvents: "none",
+                color: "#817f08",
+              }}
+            />
+          </div>
         </Form.Group>
 
         {/* ✅ Time Sections */}
