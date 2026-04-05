@@ -16,11 +16,11 @@ function AppointmentForm({ onSuccess }) {
   });
 
   const [loading, setLoading] = useState(false);
-  const [errors, setErrors] = useState({}); // ✅ added
+  const [errors, setErrors] = useState({}); 
 
   const SCRIPT_URL = import.meta.env.VITE_GOOGLE_SCRIPT_URL;
 
-  // 🔥 real-time validation function
+  // real-time validation function
   const validateField = (name, value) => {
     let error = "";
 
@@ -44,7 +44,7 @@ function AppointmentForm({ onSuccess }) {
     }));
   };
 
-  // 🔥 updated handleChange
+  // updated handleChange
   const handleChange = (e) => {
     let { name, value } = e.target;
 
@@ -63,10 +63,10 @@ function AppointmentForm({ onSuccess }) {
       [name]: value,
     });
 
-    validateField(name, value); // ✅ real-time validation
+    validateField(name, value); // real-time validation
   };
 
-  // ✅ Date select
+  // Date select
   const handleDateSelect = (date) => {
     setFormData({ ...formData, date });
 
@@ -77,7 +77,7 @@ function AppointmentForm({ onSuccess }) {
     }
   };
 
-  // ✅ Time select
+  // Time select
   const handleTimeSelect = (time) => {
     setFormData({ ...formData, time });
 
