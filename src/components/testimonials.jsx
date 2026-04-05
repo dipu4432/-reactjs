@@ -6,7 +6,7 @@ function Testimonials() {
   return (
     <section className="testimonial-section">
       <div className="container">
-        <h2 className="text-center fw-bold my-5">Patient Reviews</h2>
+        <h2 className="text-center fw-bold my-3">Patient Reviews</h2>
 
         <div className="row g-4 mb-5">
           {/* Map Card */}

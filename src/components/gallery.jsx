@@ -59,7 +59,7 @@ function Gallery() {
   return (
     <section className="gallery-section">
       <Container>
-        <h2 className="text-center fw-bold mb-5">Gallery</h2>
+        <h2 className="text-center fw-bold mb-3">Gallery</h2>
 
         <div className="gallery-wrapper">
           {/* Prev Button */}

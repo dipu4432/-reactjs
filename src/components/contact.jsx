@@ -39,7 +39,7 @@ function Contact() {
     >
       <Container>
         {/* Heading */}
-        <h1 className="fw-bold mb-5">Book Your Appointment Today</h1>
+        <h1 className="fw-bold mb-3">Book Your Appointment Today</h1>
 
         {/* Buttons */}
         <div className="d-flex justify-content-center gap-4 flex-wrap">
