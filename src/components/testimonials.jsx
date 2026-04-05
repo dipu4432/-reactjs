@@ -8,7 +8,7 @@ function Testimonials() {
       <div className="container">
         <h2 className="text-center fw-bold my-5">Patient Reviews</h2>
 
-        <div className="row g-4 mb-3">
+        <div className="row g-4 mb-5">
           {/* Map Card */}
           <div className="col-12 col-sm-6 col-md-4">
             <div className="card p-3 shadow-sm rounded h-100">
