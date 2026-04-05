@@ -33,35 +33,35 @@ function About() {
 
             {/* Points */}
             <ul className="about-list">
-  {[
-    "Experienced Orthopedic Doctor",
-    "Expert in Bone & Joint Treatment",
-    "Advanced Fracture Management",
-    "Arthritis & Joint Pain Specialist",
-    "Knee Pain & Injury Treatment",
-    "Personalized Patient Care",
-    "Modern Equipment & Techniques",
-    "Fast Recovery Focused Treatment",
-    "Friendly & Patient-Centered Approach",
-    "Trusted by Hundreds of Patients",
-  ]
-    .slice(0, showMore ? 10 : 5)
-    .map((item, index) => (
-      <li key={index}>
-        <FaCheck className="icon" />
-        {item}
-      </li>
-    ))}
-</ul>
+              {[
+                "Experienced Orthopedic Doctor",
+                "Expert in Bone & Joint Treatment",
+                "Advanced Fracture Management",
+                "Arthritis & Joint Pain Specialist",
+                "Knee Pain & Injury Treatment",
+                "Personalized Patient Care",
+                "Modern Equipment & Techniques",
+                "Fast Recovery Focused Treatment",
+                "Friendly & Patient-Centered Approach",
+                "Trusted by Hundreds of Patients",
+              ]
+                .slice(0, showMore ? 10 : 5)
+                .map((item, index) => (
+                  <li key={index}>
+                    <FaCheck className="icon" />
+                    {item}
+                  </li>
+                ))}
+            </ul>
 
             {/* Button */}
             <button
-  className="about-btn d-flex align-items-center gap-2"
-  onClick={() => setShowMore(!showMore)}
->
-  {showMore ? "Read Less" : "Read More"}
-  <IoIosArrowForward size={18} />
-</button>
+              className="about-btn d-flex align-items-center gap-2"
+              onClick={() => setShowMore(!showMore)}
+            >
+              {showMore ? "Read Less" : "Read More"}
+              <IoIosArrowForward size={18} />
+            </button>
           </Col>
         </Row>
       </Container>

@@ -33,7 +33,7 @@ function Contact() {
   #FFFFFF 40%,
   #FFFFFF 60%,
   #ECF2FE 100%)`,
-        padding: "60px 0",
+        padding: "40px 0",
         textAlign: "center",
       }}
     >
