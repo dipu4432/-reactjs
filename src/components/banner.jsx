@@ -42,7 +42,10 @@ function Banner() {
             <FaPhoneAlt /> Call Doctor
           </button> */}
           <Button
-            className="btn-secondary"
+            style={{
+              backgroundColor: "#3B82A0",
+              border: "none",
+            }}
             onClick={() => {
               // const phoneNumber = "+919876543210"; // replace with your number
               window.location.href = `tel:${phoneNumber}`;

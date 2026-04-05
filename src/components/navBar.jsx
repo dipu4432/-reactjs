@@ -36,7 +36,7 @@ function NavBar() {
 
             <Button
               style={{
-                backgroundColor: "#9228a7",
+                backgroundColor: "#3B82A0",
                 border: "none",
                 padding: "8px 16px",
                 fontWeight: "500",
