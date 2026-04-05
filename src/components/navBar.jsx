@@ -4,17 +4,18 @@ import Navbar from "react-bootstrap/Navbar";
 import { useState } from "react";
 import { Modal, Button } from "react-bootstrap";
 import AppointmentForm from "./appointmentForm";
+import CallbackForm from "./callBackForm";
 import "./navBar.css";
 
 function NavBar() {
   const [show, setShow] = useState(false);
+  const [showCallback, setShowCallback] = useState(false);
 
   return (
     <>
       {/* <Navbar bg="light" expand="lg" className="py-3 shadow-sm" fixed="top"> */}
-      <Navbar bg="light" expand="lg" className="py-4 shadow-sm" >
+      <Navbar bg="light" expand="lg" className="py-4 shadow-sm">
         <Container>
-          
           {/* Logo */}
           <Navbar.Brand className="fw-bold fs-6">
             Tiwari Nursing Home
@@ -33,6 +34,19 @@ function NavBar() {
               <Nav.Link href="#contact">Contact</Nav.Link>
             </Nav>
 
+            <Button
+              style={{
+                backgroundColor: "#9228a7",
+                border: "none",
+                padding: "8px 16px",
+                fontWeight: "500",
+                marginRight: "10px",
+              }}
+              onClick={() => setShowCallback(true)}
+            >
+              Request a Callback
+            </Button>
+
             {/* Button */}
             <Button
               style={{
@@ -50,18 +64,23 @@ function NavBar() {
       </Navbar>
 
       {/* ✅ Modal OUTSIDE Navbar */}
-      <Modal
-        show={show}
-        onHide={() => setShow(false)}
-        centered
-        size="lg"
-      >
+      <Modal show={show} onHide={() => setShow(false)} centered size="lg">
         <Modal.Header closeButton>
           <Modal.Title>Book Appointment</Modal.Title>
         </Modal.Header>
 
         <Modal.Body>
           <AppointmentForm onSuccess={() => setShow(false)} />
+        </Modal.Body>
+      </Modal>
+
+      <Modal show={showCallback} onHide={() => setShowCallback(false)} centered>
+        <Modal.Header closeButton>
+          <Modal.Title>Request a Callback</Modal.Title>
+        </Modal.Header>
+
+        <Modal.Body>
+          <CallbackForm onSuccess={() => setShowCallback(false)} />
         </Modal.Body>
       </Modal>
     </>

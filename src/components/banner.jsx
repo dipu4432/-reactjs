@@ -1,6 +1,6 @@
 import { FaPhoneAlt, FaCalendarAlt } from "react-icons/fa";
 import "./banner.css";
-import heroBg from "../assets/hero-bg.webp";
+import heroBg from "../assets/orthopedic-clinic.webp";
 import { useState } from "react";
 import { Modal, Button } from "react-bootstrap";
 import AppointmentForm from "./appointmentForm";
