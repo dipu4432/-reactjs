@@ -13,59 +13,100 @@ function AppointmentForm({ onSuccess }) {
     date: "",
     time: "",
     reason: "",
-    // confirm: false,
   });
+
   const [loading, setLoading] = useState(false);
+  const [errors, setErrors] = useState({}); // ✅ added
 
   const SCRIPT_URL = import.meta.env.VITE_GOOGLE_SCRIPT_URL;
 
+  // 🔥 real-time validation function
+  const validateField = (name, value) => {
+    let error = "";
+
+    if (name === "name") {
+      if (!value.trim()) error = "Name is required";
+    }
+
+    if (name === "phone") {
+      if (!value) error = "Phone is required";
+      else if (!/^[6-9]\d{9}$/.test(value))
+        error = "Enter valid 10-digit number";
+    }
+
+    if (name === "reason") {
+      if (!value) error = "Please select reason";
+    }
+
+    setErrors((prev) => ({
+      ...prev,
+      [name]: error,
+    }));
+  };
+
+  // 🔥 updated handleChange
   const handleChange = (e) => {
-    const { name, value } = e.target;
+    let { name, value } = e.target;
+
+    // Name: block numbers
+    if (name === "name") {
+      if (!/^[A-Za-z\s.-]*$/.test(value)) return;
+    }
+
+    // Phone: only digits
+    if (name === "phone") {
+      value = value.replace(/\D/g, "").slice(0, 10);
+    }
+
     setFormData({
       ...formData,
-      // [name]: type === "checkbox" ? checked : value,
       [name]: value,
     });
+
+    validateField(name, value); // ✅ real-time validation
   };
 
   // ✅ Date select
   const handleDateSelect = (date) => {
     setFormData({ ...formData, date });
+
+    if (!date) {
+      setErrors((prev) => ({ ...prev, date: "Select date" }));
+    } else {
+      setErrors((prev) => ({ ...prev, date: "" }));
+    }
   };
 
   // ✅ Time select
   const handleTimeSelect = (time) => {
     setFormData({ ...formData, time });
+
+    setErrors((prev) => ({ ...prev, time: "" }));
   };
 
   const validateForm = () => {
-    // Name
     if (!formData.name.trim()) {
       toast.dismiss();
       toast.warning("Name is required");
       return false;
     }
 
-    // Phone (India: 10 digits)
     if (!/^[6-9]\d{9}$/.test(formData.phone)) {
       toast.warning("Enter valid 10-digit phone number");
       return false;
     }
 
-    // Date (not past)
     const today = new Date().toISOString().split("T")[0];
     if (!formData.date || formData.date < today) {
       toast.warning("Please select a valid date");
       return false;
     }
 
-    // Time
     if (!formData.time) {
       toast.warning("Please select time");
       return false;
     }
 
-    // Reason
     if (!formData.reason) {
       toast.warning("Please select reason");
       return false;
@@ -77,20 +118,9 @@ function AppointmentForm({ onSuccess }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // if (!formData.confirm) {
-    //   alert("Please confirm your details first.");
-    //   return;
-    // }
-
-    // if (!formData.date || !formData.time) {
-    //   alert("Please select date and time.");
-    //   return;
-    // }
-
     if (!validateForm()) return;
 
-    setLoading(true); // ✅ start loading
-
+    setLoading(true);
     const toastId = toast.loading("Submitting...");
 
     try {
@@ -103,11 +133,8 @@ function AppointmentForm({ onSuccess }) {
         body: JSON.stringify(formData),
       });
 
-      // toast.success("Appointment Submitted ✅");
-
-      // ✅ update same toast (no new popup)
       toast.update(toastId, {
-        render: "Appointment Submitted ✅",
+        render: "Appointment Submitted",
         type: "success",
         isLoading: false,
         autoClose: 3000,
@@ -119,14 +146,14 @@ function AppointmentForm({ onSuccess }) {
         date: "",
         time: "",
         reason: "",
-        // confirm: false,
       });
+
+      setErrors({});
 
       if (onSuccess) onSuccess();
     } catch (error) {
       console.error("Error:", error);
-      // toast.error("Something went wrong!");
-      // ✅ update same toast for error
+
       toast.update(toastId, {
         render: "Something went wrong!",
         type: "error",
@@ -139,146 +166,139 @@ function AppointmentForm({ onSuccess }) {
   };
 
   return (
-    <>
-      {/* <h5 className="text-center mb-3 fw-bold">Book Appointment</h5> */}
+    <Form onSubmit={handleSubmit}>
+      {/* Name */}
+      <Form.Group className="mb-3">
+        <Form.Control
+          type="text"
+          name="name"
+          placeholder="Patient Name"
+          value={formData.name}
+          onChange={handleChange}
+          isInvalid={!!errors.name}
+        />
+        <Form.Control.Feedback type="invalid">
+          {errors.name}
+        </Form.Control.Feedback>
+      </Form.Group>
 
-      <Form onSubmit={handleSubmit}>
-        {/* Name */}
-        <Form.Group className="mb-3">
-          <Form.Control
-            type="text"
-            name="name"
-            placeholder="Patient Name"
-            value={formData.name}
-            onChange={handleChange}
-            required
+      {/* Phone */}
+      <Form.Group className="mb-3">
+        <Form.Control
+          type="tel"
+          name="phone"
+          placeholder="Phone Number"
+          value={formData.phone}
+          onChange={handleChange}
+          isInvalid={!!errors.phone}
+        />
+        <Form.Control.Feedback type="invalid">
+          {errors.phone}
+        </Form.Control.Feedback>
+      </Form.Group>
+
+      {/* Date */}
+      <Form.Group className="mb-3">
+        <div style={{ position: "relative" }}>
+          <DatePicker
+            selected={formData.date ? new Date(formData.date) : null}
+            onChange={(date) =>
+              handleDateSelect(date.toISOString().split("T")[0])
+            }
+            minDate={new Date()}
+            placeholderText="Select Date"
+            dateFormat="yyyy-MM-dd"
+            className="form-control"
           />
-        </Form.Group>
 
-        {/* Phone */}
-        <Form.Group className="mb-3">
-          <Form.Control
-            type="tel"
-            name="phone"
-            placeholder="Phone Number"
-            value={formData.phone}
-            onChange={handleChange}
-            required
+          <FaCalendarAlt
+            size={16}
+            style={{
+              position: "absolute",
+              right: "12px",
+              top: "50%",
+              transform: "translateY(-50%)",
+              pointerEvents: "none",
+              color: "#817f08",
+            }}
           />
-        </Form.Group>
+        </div>
+        {errors.date && <small className="text-danger">{errors.date}</small>}
+      </Form.Group>
 
-        {/* Date */}
-        <Form.Group className="mb-3">
-          <div style={{ position: "relative" }}>
-            <DatePicker
-              selected={formData.date ? new Date(formData.date) : null}
-              onChange={(date) =>
-                setFormData({
-                  ...formData,
-                  date: date.toISOString().split("T")[0],
-                })
-              }
-              minDate={new Date()}
-              placeholderText="Select Date"
-              dateFormat="yyyy-MM-dd"
-              className="form-control"
-            />
+      {/* Time */}
+      <div className="mb-3">
+        <p className="fw-bold mb-2">Select Time</p>
 
-            <FaCalendarAlt
-              size={16}
-              style={{
-                position: "absolute",
-                right: "12px",
-                top: "50%",
-                transform: "translateY(-50%)",
-                pointerEvents: "none",
-                color: "#817f08",
-              }}
-            />
-          </div>
-        </Form.Group>
-
-        {/* ✅ Time Sections */}
-        <div className="mb-3">
-          <p className="fw-bold mb-2">Select Time</p>
-
-          <p className="mb-1">Morning</p>
-          <div className="time-boxes mb-2">
-            {["9:00 AM", "10:00 AM", "11:00 AM"].map((time) => (
-              <div
-                key={time}
-                className={`time-box ${formData.time === time ? "active" : ""}`}
-                onClick={() => handleTimeSelect(time)}
-              >
-                {time}
-              </div>
-            ))}
-          </div>
-
-          <p className="mb-1">Afternoon</p>
-          <div className="time-boxes mb-2">
-            {["1:00 PM", "2:00 PM", "3:00 PM"].map((time) => (
-              <div
-                key={time}
-                className={`time-box ${formData.time === time ? "active" : ""}`}
-                onClick={() => handleTimeSelect(time)}
-              >
-                {time}
-              </div>
-            ))}
-          </div>
-
-          <p className="mb-1">Evening</p>
-          <div className="time-boxes">
-            {["5:00 PM", "6:00 PM", "7:00 PM"].map((time) => (
-              <div
-                key={time}
-                className={`time-box ${formData.time === time ? "active" : ""}`}
-                onClick={() => handleTimeSelect(time)}
-              >
-                {time}
-              </div>
-            ))}
-          </div>
+        <p className="mb-1">Morning</p>
+        <div className="time-boxes mb-2">
+          {["9:00 AM", "10:00 AM", "11:00 AM"].map((time) => (
+            <div
+              key={time}
+              className={`time-box ${formData.time === time ? "active" : ""}`}
+              onClick={() => handleTimeSelect(time)}
+            >
+              {time}
+            </div>
+          ))}
         </div>
 
-        {/* Reason */}
-        <Form.Group className="mb-3">
-          <Form.Select
-            name="reason"
-            value={formData.reason}
-            onChange={handleChange}
-            required
-          >
-            <option value="">Select reason</option>
-            <option>Knee Pain</option>
-            <option>Back Pain</option>
-            <option>Broken Leg</option>
-            <option>Broken Hand</option>
-            <option>General Checkup</option>
-          </Form.Select>
-        </Form.Group>
-
-        {/* Confirm */}
-        {/* <Form.Group className="mb-3">
-          <Form.Check
-            type="checkbox"
-            name="confirm"
-            label="I confirm details are correct"
-            checked={formData.confirm}
-            onChange={handleChange}
-          />
-        </Form.Group> */}
-
-        {/* Submit */}
-        <div className="d-grid">
-          <Button variant="primary" type="submit" disabled={loading}>
-            {/* Submit Appointment */}
-            {loading ? "Submitting..." : "Submit Appointment"}
-          </Button>
+        <p className="mb-1">Afternoon</p>
+        <div className="time-boxes mb-2">
+          {["1:00 PM", "2:00 PM", "3:00 PM"].map((time) => (
+            <div
+              key={time}
+              className={`time-box ${formData.time === time ? "active" : ""}`}
+              onClick={() => handleTimeSelect(time)}
+            >
+              {time}
+            </div>
+          ))}
         </div>
-      </Form>
-    </>
+
+        <p className="mb-1">Evening</p>
+        <div className="time-boxes">
+          {["5:00 PM", "6:00 PM", "7:00 PM"].map((time) => (
+            <div
+              key={time}
+              className={`time-box ${formData.time === time ? "active" : ""}`}
+              onClick={() => handleTimeSelect(time)}
+            >
+              {time}
+            </div>
+          ))}
+        </div>
+
+        {errors.time && <div className="text-danger">{errors.time}</div>}
+      </div>
+
+      {/* Reason */}
+      <Form.Group className="mb-3">
+        <Form.Select
+          name="reason"
+          value={formData.reason}
+          onChange={handleChange}
+          isInvalid={!!errors.reason}
+        >
+          <option value="">Select reason</option>
+          <option>Knee Pain</option>
+          <option>Back Pain</option>
+          <option>Broken Leg</option>
+          <option>Broken Hand</option>
+          <option>General Checkup</option>
+        </Form.Select>
+        <Form.Control.Feedback type="invalid">
+          {errors.reason}
+        </Form.Control.Feedback>
+      </Form.Group>
+
+      {/* Submit */}
+      <div className="d-grid">
+        <Button variant="primary" type="submit" disabled={loading}>
+          {loading ? "Submitting..." : "Submit Appointment"}
+        </Button>
+      </div>
+    </Form>
   );
 }
 

@@ -15,41 +15,86 @@ function CallbackForm({ onSuccess }) {
 
   const [errors, setErrors] = useState({});
 
+  // Handle input change with UX validation
   const handleChange = (e) => {
+    let { name, value } = e.target;
+
+    // Name: allow only letters, space, dot, hyphen
+    if (name === "name") {
+      if (!/^[A-Za-z\s.-]*$/.test(value)) return;
+    }
+
+    // Phone: allow only digits, max 10
+    if (name === "phone") {
+      value = value.replace(/\D/g, "").slice(0, 10);
+    }
+
+    // Comments: limit 200
+    if (name === "comments") {
+      value = value.slice(0, 200);
+    }
+
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value,
+      [name]: value,
     });
 
-    setErrors({
-      ...errors,
-      [e.target.name]: "",
-    });
+    // Real-time validation
+    validateField(name, value);
   };
 
+  // Validate single field (UX improvement)
+  const validateField = (name, value) => {
+    let error = "";
+
+    if (name === "name") {
+      if (!value.trim()) {
+        error = "Name is required";
+      }
+    }
+
+    if (name === "phone") {
+      if (!value) {
+        error = "Phone number is required";
+      } else if (!/^[6-9]\d{9}$/.test(value)) {
+        error = "Enter valid 10-digit number";
+      }
+    }
+
+    if (name === "comments") {
+      if (value.length > 200) {
+        error = "Max 200 characters allowed";
+      }
+    }
+
+    setErrors((prev) => ({
+      ...prev,
+      [name]: error,
+    }));
+  };
+
+  // Full validation before submit
   const validate = () => {
     let newErrors = {};
 
     if (!formData.name.trim()) {
       newErrors.name = "Name is required";
-    } else if (formData.name.length < 3) {
-      newErrors.name = "Name must be at least 3 characters";
     }
 
-    const phoneRegex = /^[6-9]\d{9}$/;
     if (!formData.phone) {
       newErrors.phone = "Phone number is required";
-    } else if (!phoneRegex.test(formData.phone)) {
-      newErrors.phone = "Enter a valid 10-digit phone number";
+    } else if (!/^[6-9]\d{9}$/.test(formData.phone)) {
+      newErrors.phone = "Enter valid 10-digit number";
     }
 
     if (formData.comments.length > 200) {
-      newErrors.comments = "Comments must be under 200 characters";
+      newErrors.comments = "Max 200 characters allowed";
     }
 
     return newErrors;
   };
 
+  // Submit
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -57,7 +102,7 @@ function CallbackForm({ onSuccess }) {
 
     if (Object.keys(validationErrors).length > 0) {
       setErrors(validationErrors);
-      toast.error("Please fix the errors in the form");
+      toast.error("Please fix the errors");
       return;
     }
 
@@ -72,9 +117,8 @@ function CallbackForm({ onSuccess }) {
         body: JSON.stringify(formData),
       });
 
-      toast.success("Callback request sent successfully. We will contact you soon!");
+      toast.success("Callback request sent successfully!");
 
-      // close modal from parent (Navbar)
       if (onSuccess) onSuccess();
 
       setFormData({
@@ -86,7 +130,7 @@ function CallbackForm({ onSuccess }) {
       setErrors({});
     } catch (error) {
       console.error(error);
-      toast.error("Something went wrong. Try again!");
+      toast.error("Something went wrong");
     } finally {
       setLoading(false);
     }
@@ -135,6 +179,9 @@ function CallbackForm({ onSuccess }) {
           onChange={handleChange}
           isInvalid={!!errors.comments}
         />
+        <div className="text-end small text-muted">
+          {formData.comments.length}/200
+        </div>
         <Form.Control.Feedback type="invalid">
           {errors.comments}
         </Form.Control.Feedback>
