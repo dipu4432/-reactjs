@@ -1,19 +1,59 @@
 .services-section {
-  background: linear-gradient(to bottom,#ECF2FE 0%,
-  #FFFFFF 40%,
-  #FFFFFF 60%,
-  #ECF2FE 100%);
-  padding: 30px 0;
+  background: linear-gradient(
+    to bottom,
+    #ECF2FE 0%,
+    #FFFFFF 40%,
+    #FFFFFF 60%,
+    #ECF2FE 100%
+  );
+  padding: 50px 0 30px;
 }
 
+/* Heading */
 .services-title {
   font-size: 2rem;
+  margin-bottom: 25px;
 }
 
-.service-img {
-  width: 40px;
-  height: 40px;
-  object-fit: contain;
+/* Row */
+.services-row {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* 🔥 Desktop (5 cards) */
+.service-card-wrapper {
+  flex: 0 0 calc(20% - 16px);
+}
+
+/* Large tablet (4 cards) */
+@media (max-width: 1200px) {
+  .service-card-wrapper {
+    flex: 0 0 calc(25% - 15px);
+  }
+}
+
+/* Tablet (3 cards) */
+@media (max-width: 992px) {
+  .service-card-wrapper {
+    flex: 0 0 calc(33.33% - 14px);
+  }
+}
+
+/* Small tablet (2 cards) */
+@media (max-width: 768px) {
+  .service-card-wrapper {
+    flex: 0 0 calc(50% - 10px);
+  }
+}
+
+/* Mobile (1 card) */
+@media (max-width: 576px) {
+  .service-card-wrapper {
+    flex: 0 0 100%;
+  }
 }
 
 /* Card */
@@ -23,36 +63,41 @@
   padding: 30px 20px;
   text-align: center;
   min-height: 230px;
-  height: 100%;
 
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
-  transition: all 0.3s ease;
+  box-shadow: 0 6px 18px rgba(15, 15, 15, 0.089);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* Hover effect */
+/* Hover */
 .service-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12);
+  transform: translateY(-6px);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.1);
 }
 
 /* Icon */
 .icon-circle {
   width: 70px;
   height: 70px;
-  margin-bottom: 15px;
+  margin-bottom: 12px;
 
   border-radius: 50%;
   background: #e6f0f7;
-  color: #4c8fb5;
 
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+/* Image */
+.service-img {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
 }
 
 /* Text */

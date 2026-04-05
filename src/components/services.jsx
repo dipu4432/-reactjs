@@ -1,7 +1,6 @@
 import Container from "react-bootstrap/Container";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
 import "./services.css";
+
 import fractureImg from "../assets/services/fracture-treatment.webp";
 import jointImg from "../assets/services/joint.webp";
 import arthritisImg from "../assets/services/arthritis-treatment.webp";
@@ -41,19 +40,23 @@ function Services() {
     <section className="services-section">
       <Container>
         {/* Heading */}
-        <h2 className="text-center fw-bold mb-5 services-title">
+        <h2 className="text-center fw-bold services-title">
           Services We Provide
         </h2>
 
-        {/* Cards */}
-        <Row className="g-4 justify-content-center">
+        {/* Row */}
+        <div className="services-row">
           {services.map((item, index) => (
-            <Col key={index} xs={12} sm={6} md={4} lg={3} xl={2}>
+            <div key={index} className="service-card-wrapper">
+              
               <div className="service-card">
-                
                 {/* Icon */}
                 <div className="icon-circle">
-                  <img src={item.image} alt={item.title} className="service-img" />
+                  <img
+                    src={item.image}
+                    alt={item.title}
+                    className="service-img"
+                  />
                 </div>
 
                 {/* Title */}
@@ -61,11 +64,11 @@ function Services() {
 
                 {/* Description */}
                 <p className="text-muted">{item.desc}</p>
-
               </div>
-            </Col>
+
+            </div>
           ))}
-        </Row>
+        </div>
       </Container>
     </section>
   );
