@@ -16,9 +16,9 @@ function AppointmentForm({ onSuccess }) {
   });
 
   const [loading, setLoading] = useState(false);
-  const [errors, setErrors] = useState({}); 
+  const [errors, setErrors] = useState({});
 
-  const SCRIPT_URL = import.meta.env.VITE_GOOGLE_SCRIPT_URL;
+  const SCRIPT_URL = import.meta.env.VITE_SCRIPT_URL;
 
   // real-time validation function
   const validateField = (name, value) => {
@@ -130,7 +130,14 @@ function AppointmentForm({ onSuccess }) {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({
+          type: "appointment",
+          name: formData.name,
+          phone: formData.phone,
+          date: formData.date,
+          time: formData.time,
+          message: formData.reason,
+        }),
       });
 
       toast.update(toastId, {

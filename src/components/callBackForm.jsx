@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Form, Button } from "react-bootstrap";
 import { toast } from "react-toastify";
 
-const CALLBACK_SCRIPT_URL = import.meta.env.VITE_CALLBACK_SCRIPT_URL;
+const CALLBACK_SCRIPT_URL = import.meta.env.VITE_SCRIPT_URL;
 
 function CallbackForm({ onSuccess }) {
   const [loading, setLoading] = useState(false);
@@ -111,10 +111,16 @@ function CallbackForm({ onSuccess }) {
 
       await fetch(CALLBACK_SCRIPT_URL, {
         method: "POST",
+        mode: "no-cors",
         headers: {
-          "Content-Type": "text/plain;charset=utf-8",
+          "Content-Type": "application/json",
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({
+          type: "callback",
+          name: formData.name,
+          phone: formData.phone,
+          message: formData.comments,
+        }),
       });
 
       toast.success("Callback request sent successfully!");
