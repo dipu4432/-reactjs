@@ -1,32 +1,61 @@
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import { FaHospital, FaClock, FaHandHoldingMedical } from "react-icons/fa";
 import { GiKneeCap } from "react-icons/gi";
+import { MdEmergency } from "react-icons/md";
+import { RiHealthBookFill } from "react-icons/ri";
+import {
+  FaHospital,
+  FaClock,
+  FaHandHoldingMedical,
+  FaShieldAlt,
+  FaBolt,
+  FaClinicMedical,
+} from "react-icons/fa";
 
 function Features() {
   const features = [
-    {
-      icon: <GiKneeCap size={28} />,
-      title: "Orthopedic Specialist",
-      desc: "Bones & Joint Treatment",
-    },
-    {
-      icon: <FaHospital size={28} />,
-      title: "Modern Facilities",
-      desc: "Advanced medical equipment",
-    },
-    {
-      icon: <FaClock size={28} />,
-      title: "Timely Consultation",
-      desc: "Quick patient care",
-    },
-    {
-      icon: <FaHandHoldingMedical size={28} />,
-      title: "Affordable Treatment",
-      desc: "Quality healthcare",
-    },
-  ];
+  {
+    icon: <GiKneeCap size={28} />,
+    title: "Orthopedic Specialist",
+    desc: "Bones & Joint Treatment",
+  },
+  {
+    icon: <FaHospital size={28} />,
+    title: "Modern Facilities",
+    desc: "Advanced medical equipment",
+  },
+  {
+    icon: <FaClock size={28} />,
+    title: "Timely Consultation",
+    desc: "Quick patient care",
+  },
+  {
+    icon: <FaHandHoldingMedical size={28} />,
+    title: "Affordable Treatment",
+    desc: "Quality healthcare",
+  },
+  {
+    icon: <MdEmergency size={28} />,
+    title: "Emergency Care",
+    desc: "24/7 Emergency Support",
+  },
+  {
+    icon: <FaClinicMedical size={28} />,
+    title: "Trusted Clinic",
+    desc: "Reliable & trusted care",
+  },
+  {
+    icon: <RiHealthBookFill size={28} />,
+    title: "Hygiene & Safety",
+    desc: "Clean & safe environment",
+  },
+  {
+    icon: <FaBolt size={28} />,
+    title: "Quick Recovery",
+    desc: "Fast healing process",
+  },
+];
 
   return (
     <div style={{ backgroundColor: "#eef2f6", padding: "40px 0" }}>
@@ -37,8 +66,8 @@ function Features() {
               <div
                 style={{
                   background: "#fff",
-                  borderRadius: "12px",
-                  padding: "20px",
+                  borderRadius: "10px",
+                  padding: "18px",
                   display: "flex",
                   alignItems: "center",
                   gap: "15px",
