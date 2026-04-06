@@ -1,20 +1,42 @@
 /* Mobile navbar spacing fix */
 @media (max-width: 991px) {
   .nav-mobile {
-    gap: 10px !important; /* reduce spacing */
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
   }
 
   .nav-mobile .nav-link {
-    padding: 8px 0 !important; /* reduce vertical space */
+    padding: 8px 0;
     font-size: 15px;
   }
 
   .navbar-collapse {
-    padding-top: 10px;
+    padding-top: 12px;
   }
 
   .navbar .btn {
     margin-top: 10px;
-    width: 100%; /* full width button looks better */
+    width: 100%;
+  }
+
+  .navbar .btn:first-of-type {
+    margin-top: 15px;
+  }
+}
+
+/* Logo */
+.navbar-brand {
+  display: flex;
+  align-items: center;
+}
+
+.navbar-brand img {
+  height: 55px;
+}
+
+@media (max-width: 768px) {
+  .navbar-brand img {
+    height: 40px;
   }
 }

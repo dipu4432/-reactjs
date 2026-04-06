@@ -6,6 +6,7 @@ import { Modal, Button } from "react-bootstrap";
 import AppointmentForm from "./appointmentForm";
 import CallbackForm from "./callBackForm";
 import "./navBar.css";
+import logo from "../assets/loogoo.png";
 
 function NavBar() {
   const [show, setShow] = useState(false);
@@ -14,11 +15,23 @@ function NavBar() {
   return (
     <>
       {/* <Navbar bg="light" expand="lg" className="py-3 shadow-sm" fixed="top"> */}
-      <Navbar bg="light" expand="lg" className="py-4 shadow-sm">
+      <Navbar bg="light" expand="lg" className="py-2 shadow-sm">
         <Container>
           {/* Logo */}
-          <Navbar.Brand className="fw-bold fs-6">
+          {/* <Navbar.Brand className="fw-bold fs-6">
             Tiwari Nursing Home
+          </Navbar.Brand> */}
+
+          <Navbar.Brand href="#home" className="d-flex align-items-center">
+            <img
+              src={logo}
+              alt="Tiwari Nursing Home"
+              style={{
+                height: "80px",
+                width: "auto",
+                objectFit: "contain",
+              }}
+            />
           </Navbar.Brand>
 
           {/* Toggle */}
