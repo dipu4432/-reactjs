@@ -5,6 +5,7 @@ import Features from "./features";
 import Gallery from "./gallery";
 import Services from "./services";
 import Testimonials from "./testimonials";
+import ContactList from "./contactList";
 
 const Home = () => {
   return (
@@ -17,8 +18,10 @@ const Home = () => {
         {/* <div style={{ backgroundColor: "#eef2f6", padding: "40px 0" }}></div> */}
         <div id="gallery"><Gallery /></div>
         {/* <div style={{ backgroundColor: "#eef2f6", padding: "40px 0" }}></div> */}
-        <div id="contact"><Contact /></div>
+        {/* <div id="contact"><Contact /></div> */}
+        <Contact />
         <div id="reviews"><Testimonials /></div>
+        <div id="contact"><ContactList /></div>
     </div>
   )
 }
