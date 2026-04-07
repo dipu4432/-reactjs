@@ -15,7 +15,7 @@ const Home = () => {
         <div id="features"><Features /></div>
         {/* <div id="about"><About /></div> */}
         <div id="about">
-          <h3 className="text-center fw-bold my-3">Meet Our Doctors</h3>
+          <h1 className="text-center fw-bold my-3">Meet Our Doctors</h1>
           <Doctors />
         </div>
         {/* <div style={{ backgroundColor: "#eef2f6", padding: "40px 0" }}></div> */}
