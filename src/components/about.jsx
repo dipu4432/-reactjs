@@ -1,71 +1,56 @@
-import { useState } from "react";
-import Container from "react-bootstrap/Container";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
-import { FaCheck } from "react-icons/fa";
-import "./about.css";
-import Doctor from "../assets/doctor.webp";
-import { IoIosArrowForward } from "react-icons/io";
+import { useLocation } from "react-router-dom";
 
 function About() {
-  const [showMore, setShowMore] = useState(false);
+  const location = useLocation();
+  const doctor = location.state?.doctor;
+
+  if (!doctor) {
+    return <h2 className="text-center mt-5">No Doctor Data Found</h2>;
+  }
 
   return (
-    <section className="about-section">
-      <Container>
-        <Row className="align-items-center">
-          {/* Left Image */}
-          <Col md={6} className="mb-4 mb-md-0">
-            <div className="about-img-wrapper">
-              <img
-                src={Doctor}
-                alt="Dr. Shekhar Tiwari"
-                className="about-img"
-              />
-            </div>
-          </Col>
+    <div className="container py-5">
+      <div className="card p-4 shadow">
+        <div className="d-flex gap-4 align-items-center">
+          <img
+            src={doctor.image}
+            alt={doctor.name}
+            style={{ width: "120px", borderRadius: "50%" }}
+          />
 
-          {/* Right Content */}
-          <Col md={6}>
-            <h2 className="about-title">About Dr. Shekhar Tiwari</h2>
+          <div>
+            <h3>{doctor.name}</h3>
+            <p>{doctor.title}</p>
+            <p>{doctor.hospital}</p>
+          </div>
+        </div>
 
-            <div className="about-line"></div>
+        <hr />
 
-            {/* Points */}
-            <ul className="about-list">
-              {[
-                "Experienced Orthopedic Doctor",
-                "Expert in Bone & Joint Treatment",
-                "Advanced Fracture Management",
-                "Arthritis & Joint Pain Specialist",
-                "Knee Pain & Injury Treatment",
-                "Personalized Patient Care",
-                "Modern Equipment & Techniques",
-                "Fast Recovery Focused Treatment",
-                "Friendly & Patient-Centered Approach",
-                "Trusted by Hundreds of Patients",
-              ]
-                .slice(0, showMore ? 10 : 5)
-                .map((item, index) => (
-                  <li key={index}>
-                    <FaCheck className="icon" />
-                    {item}
-                  </li>
-                ))}
-            </ul>
+        <div className="d-flex gap-5 mt-3">
+          <div>
+            <h5>{doctor.experience} Years</h5>
+            <p>Experience</p>
+          </div>
+          <div>
+            <h5>₹ {doctor.fees}</h5>
+            <p>Fees</p>
+          </div>
+        </div>
 
-            {/* Button */}
-            <button
-              className="about-btn d-flex align-items-center gap-2"
-              onClick={() => setShowMore(!showMore)}
-            >
-              {showMore ? "Read Less" : "Read More"}
-              <IoIosArrowForward size={18} />
-            </button>
-          </Col>
-        </Row>
-      </Container>
-    </section>
+        <p className="mt-3">
+          📍 Available at <strong>{doctor.location}</strong>
+        </p>
+
+        <div className="mt-3">
+          {doctor.tags.map((tag, i) => (
+            <span key={i} className="badge bg-secondary me-2">
+              {tag}
+            </span>
+          ))}
+        </div>
+      </div>
+    </div>
   );
 }
 

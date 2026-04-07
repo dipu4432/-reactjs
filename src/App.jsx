@@ -1,31 +1,33 @@
-import NavBar from './components/navBar'
-import HOME from './components/home'
-import Footer from './components/footer'
+import { Routes, Route } from "react-router-dom";
+import About from "./components/about";
+import NavBar from "./components/navBar";
+import HOME from "./components/home";
+import Footer from "./components/footer";
 
-// ✅ Import toast container
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 function App() {
-
   return (
-    <div  className="d-flex flex-column min-vh-100">
-      {/* Navigation Bar */}
+    <div className="d-flex flex-column min-vh-100">
+      
+      {/* Navbar */}
       <NavBar />
 
-      {/* Main content */}
+      {/* Routes */}
       <div className="flex-grow-1">
-        {/* <h1 className="text-center mt-5">Main Content</h1> */}
-        <HOME />
+        <Routes>
+          <Route path="/" element={<HOME />} />
+          <Route path="/doctor/:id" element={<About />} />
+        </Routes>
       </div>
 
       {/* Footer */}
       <Footer />
 
       <ToastContainer position="top-right" autoClose={3000} />
-      
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
