@@ -1,6 +1,6 @@
 import { FaStar } from "react-icons/fa";
 import user1 from "../assets/girl.webp";
-import user2 from "../assets/doctor.webp";
+import user2 from "../assets/charlie.webp";
 
 function Testimonials() {
   return (
