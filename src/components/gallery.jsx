@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import Container from "react-bootstrap/Container";
-import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import "./gallery.css";
 
 import g1 from "../assets/gallery/gallery1.webp";
@@ -37,6 +36,15 @@ function Gallery() {
     return () => window.removeEventListener("resize", updateCount);
   }, []);
 
+  // 👉 Auto rotate images
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setStartIndex((prev) => (prev + 1) % images.length);
+    }, 2000); // 2 seconds
+
+    return () => clearInterval(interval);
+  }, [images.length]);
+
   // 👉 Get visible images (circular)
   const getVisibleImages = () => {
     const result = [];
@@ -46,27 +54,12 @@ function Gallery() {
     return result;
   };
 
-  const handleNext = () => {
-    setStartIndex((prev) => (prev + 1) % images.length);
-  };
-
-  const handlePrev = () => {
-    setStartIndex(
-      (prev) => (prev - 1 + images.length) % images.length
-    );
-  };
-
   return (
     <section className="gallery-section">
       <Container>
         <h2 className="text-center fw-bold mb-3">Gallery</h2>
 
         <div className="gallery-wrapper">
-          {/* Prev Button */}
-          <button className="nav-btn left" onClick={handlePrev}>
-            <FaChevronLeft />
-          </button>
-
           {/* Images */}
           <div className="gallery-row">
             {getVisibleImages().map((img, index) => (
@@ -75,11 +68,6 @@ function Gallery() {
               </div>
             ))}
           </div>
-
-          {/* Next Button */}
-          <button className="nav-btn right" onClick={handleNext}>
-            <FaChevronRight />
-          </button>
         </div>
       </Container>
     </section>
