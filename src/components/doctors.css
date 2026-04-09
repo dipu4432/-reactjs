@@ -91,8 +91,9 @@
 }
 
 .btn-outline {
-  background: #e6b8a9;
-  border-top: 1px solid #000;
+  background: #3B82A0;
+  /* border-top: 1px solid #FFF; */
+  color: #fff
 }
 
 .btn-fill {
