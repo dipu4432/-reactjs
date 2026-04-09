@@ -1,35 +1,23 @@
 import DoctorCard from "./doctorCard";
-import doc1 from "../assets/doctor.webp";
-import doc2 from "../assets/doctor2.jpeg";
+import doctors from "../data/doctorsData";
 
 function Doctors() {
   return (
     <div className="container mt-4 d-flex gap-4 flex-wrap justify-content-center">
-      <DoctorCard
-        name="Dr. Shekhar Tiwari"
-        title="HEAD OF ORTHOPEDIC DEPARTMENT"
-        hospital="Orthopedic Surgeon at Tiwari Nursing Home"
-        tags={["Cardiac Sciences", "Interventional Cardiology"]}
-        experience={35}
-        fees={2000}
-        location="Bilaspur, Chhattisgarh"
-        image={doc1}
-      />
-
-      <DoctorCard
-        name="Dr. Vaibhav Tiwari"
-        title="ASSISTANT CONSULTANT - GENERAL SURGERY"
-        hospital="Orthopedic Surgeon at Tiwari Nursing Home"
-        tags={[
-          "General Surgery",
-          "Laparoscopic Surgery",
-          "Oncology",
-        ]}
-        experience={25}
-        fees={1500}
-        location="Bilaspur, Chhattisgarh"
-        image={doc2}
-      />
+      {doctors.map((doc) => (
+        <DoctorCard
+          key={doc.id}
+          id={doc.id}
+          name={doc.name}
+          title={doc.title}
+          hospital={doc.hospital}
+          tags={doc.tags}
+          experience={doc.experience}
+          fees={doc.fees}
+          location={doc.location}
+          image={doc.image}
+        />
+      ))}
     </div>
   );
 }

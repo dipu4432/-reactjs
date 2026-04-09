@@ -5,6 +5,7 @@ import AppointmentForm from "./appointmentForm";
 import { useNavigate } from "react-router-dom";
 
 function DoctorCard({
+  id,
   name,
   title,
   hospital,
@@ -65,7 +66,7 @@ function DoctorCard({
         <button
           className="btn-outline"
           onClick={() =>
-            navigate(`/doctor/${name}`, {
+            navigate(`/doctor/${id}`, {
               state: {
                 doctor: {
                   name,
