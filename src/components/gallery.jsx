@@ -16,7 +16,7 @@ function Gallery() {
   const [startIndex, setStartIndex] = useState(0);
   const [visibleCount, setVisibleCount] = useState(4);
 
-  //  Responsive visible count
+  // Responsive visible count
   useEffect(() => {
     const updateCount = () => {
       if (window.innerWidth < 576) {
@@ -36,16 +36,16 @@ function Gallery() {
     return () => window.removeEventListener("resize", updateCount);
   }, []);
 
-  // 👉 Auto rotate images
+  // Auto rotate (slightly slower = better UX)
   useEffect(() => {
     const interval = setInterval(() => {
       setStartIndex((prev) => (prev + 1) % images.length);
-    }, 2000); // 2 seconds
+    }, 3000); // changed to 3s
 
     return () => clearInterval(interval);
   }, [images.length]);
 
-  // 👉 Get visible images (circular)
+  // Visible images
   const getVisibleImages = () => {
     const result = [];
     for (let i = 0; i < visibleCount; i++) {
@@ -57,14 +57,13 @@ function Gallery() {
   return (
     <section className="gallery-section">
       <Container>
-        <h2 className="text-center fw-bold mb-3">Gallery</h2>
+        <h2 className="text-center fw-bold mb-4">Gallery</h2>
 
         <div className="gallery-wrapper">
-          {/* Images */}
           <div className="gallery-row">
             {getVisibleImages().map((img, index) => (
               <div key={index} className="gallery-card">
-                <img src={img} alt="gallery" />
+                <img src={img} alt={`gallery-${index}`} />
               </div>
             ))}
           </div>
