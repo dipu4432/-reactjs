@@ -24,7 +24,7 @@ const Home = () => {
         <div id="gallery"><Gallery /></div>
         {/* <div style={{ backgroundColor: "#eef2f6", padding: "40px 0" }}></div> */}
         {/* <div id="contact"><Contact /></div> */}
-        <Contact />
+        {/* <Contact /> */}
         <div id="reviews"><Testimonials /></div>
         <div id="contact"><ContactList /></div>
     </div>
