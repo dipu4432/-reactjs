@@ -7,7 +7,7 @@ import { FaPhoneAlt } from "react-icons/fa";
 import AppointmentForm from "./appointmentForm";
 import CallbackForm from "./callBackForm";
 import "./navBar.css";
-import logo from "../assets/loogoo.png";
+import logo from "../assets/llogoo.png";
 import { Link } from "react-router-dom";
 
 function NavBar() {
