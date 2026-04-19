@@ -6,6 +6,7 @@ import Footer from "./components/footer";
 import ScrollToSection from "./components/ScrollToSection";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Pytholab from "./components/pytholab";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
         <Routes>
           <Route path="/" element={<HOME />} />
           <Route path="/doctor/:id" element={<About />} />
+          <Route path="/pytholab" element={<Pytholab />} />
         </Routes>
       </div>
 

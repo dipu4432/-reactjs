@@ -1,4 +1,5 @@
 import Container from "react-bootstrap/Container";
+import { useNavigate } from "react-router-dom";
 import "./services.css";
 
 import fractureImg from "../assets/services/fracture-treatment.webp";
@@ -8,6 +9,8 @@ import physioImg from "../assets/services/Physiotherapy.webp";
 import kneeImg from "../assets/services/knee.webp";
 
 function Services() {
+  const navigate = useNavigate();
+
   const services = [
     {
       image: fractureImg,
@@ -26,8 +29,9 @@ function Services() {
     },
     {
       image: physioImg,
-      title: "Physiotherapy",
-      desc: "Rehabilitation & Physical Therapy",
+      title: "Pytholab",
+      desc: "Advanced Physiotherapy & Rehabilitation Care",
+      readMore: true,
     },
     {
       image: kneeImg,
@@ -48,9 +52,8 @@ function Services() {
         <div className="services-row">
           {services.map((item, index) => (
             <div key={index} className="service-card-wrapper">
-              
               <div className="service-card">
-                {/* Icon */}
+                {/* Image */}
                 <div className="icon-circle">
                   <img
                     src={item.image}
@@ -64,8 +67,17 @@ function Services() {
 
                 {/* Description */}
                 <p className="text-muted">{item.desc}</p>
-              </div>
 
+                {/* Read More only for Physiotherapy */}
+                {item.readMore && (
+                  <button
+                    className="read-more-btn"
+                    onClick={() => navigate("/pytholab")}
+                  >
+                    Read More
+                  </button>
+                )}
+              </div>
             </div>
           ))}
         </div>
