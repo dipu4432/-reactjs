@@ -34,9 +34,9 @@ function Banner() {
 
         {/* Buttons */}
         <div className="hero-buttons">
-          <button className="btn-primary" onClick={() => setShow(true)}>
+          {/* <button className="btn-primary" onClick={() => setShow(true)}>
             <FaCalendarAlt /> Book Appointment
-          </button>
+          </button> */}
 
           {/* <button className="btn-secondary">
             <FaPhoneAlt /> Call Doctor
