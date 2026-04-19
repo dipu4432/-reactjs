@@ -22,7 +22,7 @@ function NavBar() {
     <>
       {/* Navbar */}
       <Navbar bg="light" expand="lg" className="py-2 shadow-sm">
-        <Container>
+        <Container fluid className="px-3 px-lg-5">
 
           {/* Logo */}
           <Navbar.Brand

@@ -1,55 +1,57 @@
-import doc1 from "../assets/doctor.webp";
-import doc2 from "../assets/doctor2.jpeg";
+import { FaUserMd, FaFlask } from "react-icons/fa";
 
 const doctors = [
   {
     id: "shekhar-tiwari",
-    image: doc1,
+    icon: FaUserMd,
     name: "Dr. Shekhar Tiwari",
     title: "Senior Orthopedic Surgeon & Trauma Specialist",
-    experience: 38,
-    fees: 1600,
+    experience: 30,
+    fees: 600,
     hospital: "Orthopedic and Trauma Center, Bilaspur",
+    location: "Bilaspur",
     tags: [
       "Joint Replacement",
       "Fracture Treatment",
       "Trauma Surgery",
       "Arthroscopy",
-      "Spine Care",
     ],
-    about:
-      "Dr. Shekhar Tiwari is a highly experienced orthopedic surgeon specializing in joint replacement and trauma care. With decades of surgical expertise, he has successfully treated complex fractures, sports injuries, and degenerative bone conditions.",
-    education:
-      "MBBS, MS (Orthopedics), Fellowship in Joint Replacement Surgery",
-    awards:
-      "Recognized for excellence in orthopedic surgery with thousands of successful joint replacement and trauma surgeries.",
-    publications:
-      "Published research on advanced fracture management, joint replacement techniques, and minimally invasive orthopedic procedures.",
   },
 
   {
     id: "vaibhav-tiwari",
-    image: doc2,
+    icon: FaUserMd,
     name: "Dr. Vaibhav Tiwari",
     title: "Consultant Orthopedic Surgeon",
-    experience: 25,
-    fees: 1500,
+    experience: 6,
+    fees: 500,
     hospital: "Orthopedic and Trauma Center, Bilaspur",
+    location: "Bilaspur",
     tags: [
       "Sports Injury",
       "Arthroscopy",
       "Ligament Reconstruction",
-      "Knee & Shoulder Surgery",
-      "Minimally Invasive Surgery",
+      "Knee Surgery",
     ],
-    about:
-      "Dr. Vaibhav Tiwari specializes in sports injuries and minimally invasive orthopedic procedures. He focuses on quick recovery treatments for ligament injuries, joint pain, and mobility issues.",
-    education:
-      "MBBS, MS (Orthopedics), Fellowship in Arthroscopy & Sports Medicine",
-    awards:
-      "Awarded for excellence in sports injury management and arthroscopic surgery.",
-    publications:
-      "Research work in arthroscopy, ligament reconstruction, and sports injury rehabilitation.",
+  },
+
+  {
+    id: "city-patholab",
+    icon: FaFlask,
+    name: "Dr. Palki Tiwari",
+    title: "Trusted Diagnostic & Lab Testing Center",
+    experience: 6,
+    fees: 300,
+    hospital: "Advanced Pathology Center, Bilaspur",
+    location: "Bilaspur",
+    tags: [
+      "Blood Test",
+      "Urine Test",
+      "X-Ray",
+      "ECG",
+      "Full Body Checkup",
+      "Diabetes Test",
+    ],
   },
 ];
 

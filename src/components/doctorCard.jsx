@@ -2,10 +2,8 @@ import { useState } from "react";
 import { Modal } from "react-bootstrap";
 import "./doctors.css";
 import AppointmentForm from "./appointmentForm";
-import { useNavigate } from "react-router-dom";
 
 function DoctorCard({
-  id,
   name,
   title,
   hospital,
@@ -13,16 +11,19 @@ function DoctorCard({
   experience,
   fees,
   location,
-  image,
+  icon: Icon,
 }) {
   const [show, setShow] = useState(false);
-  const navigate = useNavigate();
 
   return (
-    <div className="doctor-card mb-5">
-      {/* Top Section */}
+    <div className="doctor-card mb-4">
+      {/* Header */}
       <div className="doctor-header">
-        <img src={image} alt={name} className="doctor-img" />
+
+        {/* Doctor Icon */}
+        <div className="doctor-icon-box">
+          <Icon className="doctor-icon" />
+        </div>
 
         <div>
           <h5 className="doctor-name">{name}</h5>
@@ -39,9 +40,10 @@ function DoctorCard({
           {/* Info */}
           <div className="doctor-info">
             <div>
-              <strong>{experience} Years</strong>
+              <strong>{experience}+ Years</strong>
               <p>Experience</p>
             </div>
+
             <div>
               <strong>₹ {fees}</strong>
               <p>Fees</p>
@@ -55,40 +57,12 @@ function DoctorCard({
         </div>
       </div>
 
-      {/* Buttons */}
-      <div className="doctor-footer">
-        {/* <button
-          className="btn-outline"
-          onClick={() => navigate("/about")}
-        >
-          View Full Profile
-        </button> */}
-        <button
-          className="btn-outline"
-          onClick={() =>
-            navigate(`/doctor/${id}`, {
-              state: {
-                doctor: {
-                  name,
-                  title,
-                  hospital,
-                  experience,
-                  fees,
-                  location,
-                  image,
-                  tags,
-                },
-              },
-            })
-          }
-        >
-          View Full Profile
-        </button>
-
+      {/* Footer */}
+      {/* <div className="doctor-footer">
         <button className="btn-fill" onClick={() => setShow(true)}>
-          Book An Appointment
+          Book Appointment
         </button>
-      </div>
+      </div> */}
 
       {/* Modal */}
       <Modal show={show} onHide={() => setShow(false)} centered size="lg">

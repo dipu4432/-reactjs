@@ -1,10 +1,15 @@
 .doctor-card {
   width: 100%;
-  max-width: 520px;
   background: #f4f6f9;
-  border-radius: 12px;
+  border-radius: 14px;
   overflow: hidden;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.08);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  border: 1px solid #d9e2ec;
+  /* Added bottom margin */
+  margin-bottom: 30px;
 }
 
 /* Header */
@@ -12,14 +17,34 @@
   display: flex;
   gap: 15px;
   padding: 20px;
+
+  /* Fill available space */
+  flex-grow: 1;
 }
 
-.doctor-img {
-  width: 70px;
+/* Footer */
+.doctor-footer {
+  padding: 15px;
+  background: #63dbf0;
+
+  /* Push footer to bottom */
+  margin-top: auto;
+}
+
+/* ICON BOX */
+.doctor-icon-box {
+  min-width: 70px;
   height: 70px;
   border-radius: 50%;
-  object-fit: cover;
-  border: 2px solid #dbe3ef;
+  background: #3B82A0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.doctor-icon {
+  font-size: 30px;
+  color: white;
 }
 
 .doctor-name {
@@ -56,12 +81,12 @@
 /* Info */
 .doctor-info {
   display: flex;
-  gap: 30px;
+  gap: 25px;
   margin: 10px 0;
 }
 
 .doctor-info strong {
-  font-size: 16px;
+  font-size: 15px;
 }
 
 .doctor-info p {
@@ -70,33 +95,29 @@
   color: #777;
 }
 
-/* Location */
 .doctor-location {
   font-size: 13px;
   color: #555;
 }
 
-/* Footer */
-.doctor-footer {
-  display: flex;
-}
-
-.btn-outline,
+/* Button */
 .btn-fill {
-  flex: 1;
+  width: 100%;
   padding: 12px;
   border: none;
+  background: #28a745;
+  color: white;
   font-size: 14px;
+  border-radius: 8px;
   cursor: pointer;
 }
 
-.btn-outline {
-  background: #3B82A0;
-  /* border-top: 1px solid #FFF; */
-  color: #fff
+.btn-fill:hover {
+  background: #23913d;
 }
 
-.btn-fill {
-  background: #28a745;
-  color: #fff;
+.doctors-section,
+.doctors-container,
+.container {
+  padding-bottom: 60px;
 }
