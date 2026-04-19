@@ -9,9 +9,20 @@ import c1 from "../assets/gallery/img1.webp";
 import c2 from "../assets/gallery/img2.webp";
 import c3 from "../assets/gallery/img3.webp";
 import c4 from "../assets/gallery/img4.webp";
+import about from "../assets/gallery/about.webp";
+import comp from "../assets/gallery/comp.webp";
+import detailing from "../assets/gallery/detailing.webp";
+import fever from "../assets/gallery/fever.webp";
+import inside from "../assets/gallery/inside.webp";
+import inv from "../assets/gallery/inv.webp";
+import main from "../assets/gallery/main.webp";
+import pathHome from "../assets/gallery/path-home.webp";
+import rest from "../assets/gallery/rest.webp";
+import sug from "../assets/gallery/sug.webp";
+import sugar from "../assets/gallery/sugar.webp";
 
 function Gallery() {
-  const images = [g1, g2, g3, c1, c2, c3, c4];
+  const images = [g1, g2, g3, c1, c2, c3, c4, about, comp, detailing, fever, inside, inv, main, pathHome, rest, sug, sugar];
 
   const [startIndex, setStartIndex] = useState(0);
   const [visibleCount, setVisibleCount] = useState(4);
