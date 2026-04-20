@@ -7,7 +7,7 @@ import AppointmentForm from "./appointmentForm";
 /* Import your banner images */
 import heroBg1 from "../assets/orthopedic-clinic.webp";
 import heroBg2 from "../assets/pathoLab.webp";
-import heroBg3 from "../assets/hero-bg.webp";
+import heroBg3 from "../assets/ortho.webp";
 
 function Banner() {
   const [show, setShow] = useState(false);
