@@ -1,0 +1,81 @@
+.physio-page {
+  width: 100%;
+}
+
+/* Banner */
+.physio-banner {
+  position: relative;
+  height: 55vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.physio-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+}
+
+.physio-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  color: #fff;
+  padding: 20px;
+  max-width: 800px;
+}
+
+.physio-content h1 {
+  font-size: 3rem;
+  font-weight: 700;
+  margin-bottom: 15px;
+}
+
+.physio-content p {
+  font-size: 1.2rem;
+  line-height: 1.6;
+}
+
+/* Details */
+.physio-details {
+  max-width: 1000px;
+  margin: auto;
+  padding: 60px 20px;
+  text-align: center;
+}
+
+.physio-details h2 {
+  font-size: 2.2rem;
+  margin-bottom: 20px;
+}
+
+.physio-details p {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: #555;
+  margin-bottom: 18px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .physio-banner {
+    height: 42vh;
+  }
+
+  .physio-content h1 {
+    font-size: 2rem;
+  }
+
+  .physio-content p {
+    font-size: 1rem;
+  }
+
+  .physio-details h2 {
+    font-size: 1.7rem;
+  }
+
+  .physio-details p {
+    font-size: 1rem;
+  }
+}
