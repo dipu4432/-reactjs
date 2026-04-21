@@ -6,6 +6,7 @@ import { Modal, Button } from "react-bootstrap";
 import { FaPhoneAlt } from "react-icons/fa";
 import AppointmentForm from "./appointmentForm";
 import CallbackForm from "./callBackForm";
+import PathoLab from "./pytholab";
 import "./navBar.css";
 import logo from "../assets/llogoo.png";
 import { Link } from "react-router-dom";
@@ -71,6 +72,10 @@ function NavBar() {
 
               <Nav.Link as={Link} to="/#contact">
                 Contact
+              </Nav.Link>
+
+              <Nav.Link as={Link} to="/pytholab">
+                PathoLab
               </Nav.Link>
             </Nav>
 
