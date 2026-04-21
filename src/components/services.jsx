@@ -5,7 +5,7 @@ import "./services.css";
 import fractureImg from "../assets/services/fracture-treatment.webp";
 import jointImg from "../assets/services/joint.webp";
 import arthritisImg from "../assets/services/arthritis-treatment.webp";
-import physioImg from "../assets/services/Physiotherapy.webp";
+import physioImg from "../assets/services/pytholab.png";
 import kneeImg from "../assets/services/knee.webp";
 
 function Services() {
@@ -30,7 +30,7 @@ function Services() {
     {
       image: physioImg,
       title: "Pytholab",
-      desc: "Advanced Physiotherapy & Rehabilitation Care",
+      desc: "Advanced Pyhtolab Services",
       readMore: true,
     },
     {

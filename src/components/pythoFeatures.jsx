@@ -48,7 +48,7 @@ function PythoFeatures() {
   ];
 
   return (
-    <div style={{ backgroundColor: "#eef2f6", padding: "40px 0" }}>
+    <div style={{ backgroundColor: "#eef2f6", padding: "20px 0" }}>
       <Container>
         <Row className="g-4">
           {features.map((item, index) => (

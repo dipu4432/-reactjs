@@ -3,6 +3,7 @@ import bannerImg from "../assets/patholab-bg.webp";
 import PathGallery from "./pathGallery.jsx";
 import PythoFeatures from "./pythoFeatures.jsx";
 import PathoServices from "./pathoservices.jsx";
+import PathologyPriceList from "./pathologyPriceList.jsx";
 
 function Pytholab() {
   return (
@@ -45,6 +46,7 @@ function Pytholab() {
       </section>
       <PythoFeatures />
       <PathoServices />
+      <PathologyPriceList />
       <PathGallery />
     </div>
   );

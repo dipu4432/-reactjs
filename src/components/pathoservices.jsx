@@ -55,7 +55,7 @@ function PathoServices() {
   ];
 
   return (
-    <section style={{ background: "#eef2f6", padding: "50px 0" }}>
+    <section style={{ background: "#eef2f6", padding: "20px 0" }}>
       <Container>
         <h2
           className="text-center fw-bold mb-5"
